@@ -13,4 +13,34 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("web/home");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/home-page/shop-page", method = RequestMethod.GET)
+	public ModelAndView shopPage() {
+		ModelAndView mav = new ModelAndView("web/shop");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/home-page/cart-page", method = RequestMethod.GET)
+	public ModelAndView cartPage() {
+		ModelAndView mav = new ModelAndView("web/shopcart");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/home-page/detail-page", method = RequestMethod.GET)
+	public ModelAndView detailPage() {
+		ModelAndView mav = new ModelAndView("web/detail");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/home-page/contact-page", method = RequestMethod.GET)
+	public ModelAndView contactPage() {
+		ModelAndView mav = new ModelAndView("web/contact");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/home-page/checkout-page", method = RequestMethod.GET)
+	public ModelAndView checkoutPage() {
+		ModelAndView mav = new ModelAndView("web/checkout");
+		return mav;
+	}
 }

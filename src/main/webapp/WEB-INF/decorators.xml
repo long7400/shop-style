@@ -2,6 +2,10 @@
 <decorators defaultdir="/decorators">
 
 	<decorator name="home-page" page="web.jsp">
+		<pattern>/home-page/*</pattern>
+	</decorator>
+	
+	<decorator name="home-page" page="web.jsp">
 		<pattern>/home-page</pattern>
 	</decorator>
 
