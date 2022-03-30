@@ -17,7 +17,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {"com.shopstyle.repository"})
+@EnableJpaRepositories(basePackages = {"com.shopstyle.repository"}) // @Enable : bật tính năng
 @EnableTransactionManagement
 public class JPAConfig {
 	
@@ -59,8 +59,10 @@ public class JPAConfig {
 	
 	Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop"); // Giúp tạo database từ java class (ENTITY).
-//		properties.setProperty("hibernate.hbm2ddl.auto", "none"); // Sử dụng sau khi có database ổn định và chỉnh sửa ít ( thủ công )
+//		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+//		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop"); // Giúp tạo database từ java class (ENTITY).
+		properties.setProperty("hibernate.hbm2ddl.auto", "none"); // Sử dụng sau khi có database ổn định và chỉnh sửa ít ( thủ công )
+		properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 		return properties;
 	}
 }
