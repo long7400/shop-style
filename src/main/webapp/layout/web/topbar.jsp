@@ -1,11 +1,21 @@
+<%@ page import="com.shopstyle.util.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container-fluid">
 	<div class="row bg-secondary py-2 px-xl-5">
 		<div class="col-lg-6 d-none d-lg-block">
 			<div class="d-inline-flex align-items-center">
-				<a class="text-dark" href="">FAQs</a> <span class="text-muted px-2">|</span>
 				<a class="text-dark" href="">Help</a> <span class="text-muted px-2">|</span>
-				<a class="text-dark" href="">Support</a>
+				<a class="text-dark" href="">Support</a> <span class="text-muted px-2">|</span>
+				
+				<security:authorize access = "isAnonymous()">
+					<a class="text-dark" href="">Login</a> <span class="text-muted px-2">|</span>
+					<a class="text-dark" href="">Registration</a> <span class="text-muted px-2">|</span>
+				</security:authorize>
+				<security:authorize access = "isAuthenticated()">
+					<a class="text-dark" href=""> XIN CHÀO : <%=SecurityUtils.getPrincipal().getFullName()%></a> <span class="text-muted px-2">|</span>
+					<a class="text-dark" href="<c:url value='/thoat'/>">Logout</a>
+				</security:authorize>
+				
 			</div>
 		</div>
 		<div class="col-lg-6 text-center text-lg-right">
@@ -22,7 +32,7 @@
 	</div>
 	<div class="row align-items-center py-3 px-xl-5">
 		<div class="col-lg-3 d-none d-lg-block">
-			<a href="" class="text-decoration-none">
+			<a href="<c:url value='/trang-chu'/>" class="text-decoration-none">
 				<h1 class="m-0 display-5 font-weight-semi-bold">
 					<span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper
 				</h1>

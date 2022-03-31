@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.shopstyle.util.SecurityUtils" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 	<!-- Navbar Brand-->
@@ -21,6 +23,8 @@
 	</form>
 	<!-- Navbar-->
 	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+		<a class="navbar-brand ps-3" href="<c:url value='/home-admin'/>">Start
+			 <%=SecurityUtils.getPrincipal().getFullName()%></a>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
 			aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -29,7 +33,7 @@
 				<li><a class="dropdown-item" href="#!">Settings</a></li>
 				<li><a class="dropdown-item" href="#!">Activity Log</a></li>
 				<li><hr class="dropdown-divider" /></li>
-				<li><a class="dropdown-item" href="#!">Logout</a></li>
+				<li><a class="dropdown-item" href="<c:url value='/thoat'/>">Logout</a></li>
 			</ul></li>
 	</ul>
 </nav>

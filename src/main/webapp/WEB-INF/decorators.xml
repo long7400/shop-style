@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/decorators">
 
+	<decorator name="err404" page="err404.jsp">
+		<pattern>/err404</pattern>
+	</decorator>
+
 	<decorator name="web" page="web.jsp">
-		<pattern>/*</pattern> 
+		<pattern>/*</pattern>
 	</decorator>
 
 	<decorator name="home-admin" page="admin.jsp">
 		<pattern>/home-admin*</pattern>
 	</decorator>
 
-  <decorator name="login" page="login.jsp">
-        <pattern>/dang-nhap</pattern>
-    </decorator>
-    
+	<decorator name="login" page="login.jsp">
+		<pattern>/dang-nhap</pattern>
+	</decorator>
+
 </decorators>
 
 

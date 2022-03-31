@@ -16,6 +16,7 @@ import com.shopstyle.util.SecurityUtils;
 
 // Xong khi login thành công sẽ xử lí phân quyền
 //Authortication
+
 @Component
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	
