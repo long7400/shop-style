@@ -5,17 +5,7 @@
 		<div class="col-lg-6 d-none d-lg-block">
 			<div class="d-inline-flex align-items-center">
 				<a class="text-dark" href="">Help</a> <span class="text-muted px-2">|</span>
-				<a class="text-dark" href="">Support</a> <span class="text-muted px-2">|</span>
-				
-				<security:authorize access = "isAnonymous()">
-					<a class="text-dark" href="">Login</a> <span class="text-muted px-2">|</span>
-					<a class="text-dark" href="">Registration</a> <span class="text-muted px-2">|</span>
-				</security:authorize>
-				<security:authorize access = "isAuthenticated()">
-					<a class="text-dark" href=""> XIN CHÀO : <%=SecurityUtils.getPrincipal().getFullName()%></a> <span class="text-muted px-2">|</span>
-					<a class="text-dark" href="<c:url value='/thoat'/>">Logout</a>
-				</security:authorize>
-				
+				<a class="text-dark" href="">Support</a>	
 			</div>
 		</div>
 		<div class="col-lg-6 text-center text-lg-right">

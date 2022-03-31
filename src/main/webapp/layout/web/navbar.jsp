@@ -1,3 +1,4 @@
+<%@ page import="com.shopstyle.util.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container-fluid mb-5">
 	<div class="row border-top px-xl-5">
@@ -63,10 +64,19 @@
 						</div>
 						<a href="contact.html" class="nav-item nav-link">Contact</a>
 					</div>
+					<security:authorize access = "isAnonymous()">
+						<div class="navbar-nav ml-auto py-0">
+							<a href="<c:url value='/dang-nhap'/>" class="nav-item nav-link">Login</a> 
+							<a href="<c:url value='/dang-ky'/>" class="nav-item nav-link">Register</a>
+						</div>
+					</security:authorize>
+					<security:authorize access = "isAuthenticated()">
 					<div class="navbar-nav ml-auto py-0">
-						<a href="" class="nav-item nav-link">Login</a> <a href=""
-							class="nav-item nav-link">Register</a>
-					</div>
+							<a href="" class="nav-item nav-link"> Xin Chào : <%=SecurityUtils.getPrincipal().getFullName()%></a> 
+							<a href="<c:url value='/thoat'/>" class="nav-item nav-link">Logout</a>
+						</div>
+				</security:authorize>
+					
 				</div>
 			</nav>
 			<div id="header-carousel" class="carousel slide" data-ride="carousel">
