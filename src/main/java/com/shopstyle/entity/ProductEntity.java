@@ -1,7 +1,14 @@
 package com.shopstyle.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,9 +20,12 @@ public class ProductEntity extends BaseEntity{
 	
 	@Column(name = "summary", columnDefinition = "TINYTEXT", nullable = false)
 	private String summary;
+		
+	@Column(name = "color")
+	private String color;
 	
-	@Column(name = "type", columnDefinition = "SMALLINT")
-	private Integer type;
+	@Column(name = "size")
+	private String size;
 	
 	@Column(name = "price")
 	private Float price;
@@ -28,6 +38,21 @@ public class ProductEntity extends BaseEntity{
 	
 	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
+
+	@OneToMany(mappedBy = "product")
+	private List<CartItemEntity> cartItem = new ArrayList<>();
+	
+	public List<CartItemEntity> getCartItem() {
+		return cartItem;
+	}
+
+	public void setCartItem(List<CartItemEntity> cartItem) {
+		this.cartItem = cartItem;
+	}
 
 	public String getTitle() {
 		return title;
@@ -43,14 +68,6 @@ public class ProductEntity extends BaseEntity{
 
 	public void setSummary(String summary) {
 		this.summary = summary;
-	}
-
-	public Integer getType() {
-		return type;
-	}
-
-	public void setType(Integer type) {
-		this.type = type;
 	}
 
 	public Float getPrice() {
@@ -83,6 +100,30 @@ public class ProductEntity extends BaseEntity{
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 
 

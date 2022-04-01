@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -27,9 +28,12 @@ public class UserEntity extends BaseEntity {
 	@Column
 	private Integer status;
 
-	@ManyToMany()
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "roleid"))
 	private List<RoleEntity> roles = new ArrayList<>(); // Tạo bảng trung gian
+	
+	@OneToMany(mappedBy = "user")
+	private List<CartEntity> cart = new ArrayList<>();
 
 	public String getUserName() {
 		return userName;
@@ -69,6 +73,14 @@ public class UserEntity extends BaseEntity {
 
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
+	}
+
+	public List<CartEntity> getCart() {
+		return cart;
+	}
+
+	public void setCart(List<CartEntity> cart) {
+		this.cart = cart;
 	}
 
 }

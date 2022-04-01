@@ -4,7 +4,8 @@ public class ProductDTO extends AbstractDTO<ProductDTO>{
 
 	private String title;
 	private String summary;
-	private Integer types;
+	private String color;
+	private String size;
 	private Float price;
 	private Integer quantity;
 	private Integer shop;
@@ -25,12 +26,6 @@ public class ProductDTO extends AbstractDTO<ProductDTO>{
 		this.summary = summary;
 	}
 	
-	public Integer getTypes() {
-		return types;
-	}
-	public void setTypes(Integer types) {
-		this.types = types;
-	}
 	public Float getPrice() {
 		return price;
 	}
@@ -66,6 +61,18 @@ public class ProductDTO extends AbstractDTO<ProductDTO>{
 	}
 	public void setCategoryCode(String categoryCode) {
 		this.categoryCode = categoryCode;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
 	}
 	
 	

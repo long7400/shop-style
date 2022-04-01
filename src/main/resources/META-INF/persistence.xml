@@ -4,6 +4,10 @@
         <class>com.shopstyle.entity.ProductEntity</class>
         <class>com.shopstyle.entity.UserEntity</class>
         <class>com.shopstyle.entity.RoleEntity</class>
+        <class>com.shopstyle.entity.CategoryEntity</class>
+        <class>com.shopstyle.entity.SliderEntity</class>
+        <class>com.shopstyle.entity.CartEntity</class>
+        <class>com.shopstyle.entity.CartItemEntity</class>
     </persistence-unit>
 </persistence>
 
