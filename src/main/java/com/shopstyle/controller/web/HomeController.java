@@ -20,12 +20,6 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/home-page/shop-page", method = RequestMethod.GET)
-	public ModelAndView shopPage() {
-		ModelAndView mav = new ModelAndView("web/shop");
-		return mav;
-	}
-	
 	@RequestMapping(value = "/home-page/cart-page", method = RequestMethod.GET)
 	public ModelAndView cartPage() {
 		ModelAndView mav = new ModelAndView("web/shopcart");

@@ -113,3 +113,4 @@
 
 <!-- Template Javascript -->
 <script src="<c:url value='/common/web/js/main.js'/>"></script>
+<script src="<c:url value='/common/paging/jquery.twbsPagination.js' />"></script>

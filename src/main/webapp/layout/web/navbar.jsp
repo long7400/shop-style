@@ -1,5 +1,6 @@
 <%@ page import="com.shopstyle.util.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/layout/taglib.jsp"%>
 <div class="container-fluid mb-5">
 	<div class="row border-top px-xl-5">
 		<div class="col-lg-3 d-none d-lg-block">
@@ -51,8 +52,8 @@
 				<div class="collapse navbar-collapse justify-content-between"
 					id="navbarCollapse">
 					<div class="navbar-nav mr-auto py-0">
-						<a href="index.html" class="nav-item nav-link active">Home</a> <a
-							href="shop.html" class="nav-item nav-link">Shop</a> <a
+						<a href="index.html" class="nav-item nav-link active">Home</a> 
+						<a href="<c:url value='/home-page/shop-page?page=1&limit=10'/>" class="nav-item nav-link">Shop</a> <a
 							href="detail.html" class="nav-item nav-link">Shop Detail</a>
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle"

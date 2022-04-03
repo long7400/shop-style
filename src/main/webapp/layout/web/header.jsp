@@ -16,3 +16,10 @@
 <!-- Customized Bootstrap Stylesheet -->
 <link type="text/css" href="<c:url value='/common/web/css/style.css'/>" rel="stylesheet">
 
+
+<script src="<c:url value='/common/paging/jquery.min.js' />"></script>
+<script src="<c:url value='/common/paging/bootstrap.min.js' />"></script>
+
+
+
+	
