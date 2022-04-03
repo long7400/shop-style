@@ -11,3 +11,5 @@
 <script src="<c:url value='/common/admin/assets/demo/chart-bar-demo.js'/>"></script>
 <script src="<c:url value='/common/admin/js/datatables-simple-demo.js'/>"></script>
 <script src="<c:url value='/common/admin/js/Chart.min.js'/>"></script>
+
+	
