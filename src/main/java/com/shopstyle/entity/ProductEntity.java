@@ -33,6 +33,9 @@ public class ProductEntity extends BaseEntity{
 	@Column(name = "quantity")
 	private Integer quantity;
 	
+	@Column(name = "image")
+	private String image;
+	
 	@Column(name = "shop", columnDefinition = "SMALLINT")
 	private Integer shop;
 	
@@ -125,6 +128,15 @@ public class ProductEntity extends BaseEntity{
 	public void setCategory(CategoryEntity category) {
 		this.category = category;
 	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 
 
 }

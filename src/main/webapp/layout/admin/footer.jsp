@@ -12,4 +12,6 @@
 <script src="<c:url value='/common/admin/js/datatables-simple-demo.js'/>"></script>
 <script src="<c:url value='/common/admin/js/Chart.min.js'/>"></script>
 
+<script src="<c:url value='/common/paging/jquery.twbsPagination.js' />"></script>
+
 	

@@ -11,6 +11,7 @@ public class ProductDTO extends AbstractDTO<ProductDTO>{
 	private Integer shop;
 	private String content;
 	private Long categoryId;
+	private String image;
 	private String categoryCode;
 	
 	public String getTitle() {
@@ -74,6 +75,11 @@ public class ProductDTO extends AbstractDTO<ProductDTO>{
 	public void setSize(String size) {
 		this.size = size;
 	}
-	
-	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 }

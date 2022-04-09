@@ -39,3 +39,6 @@
 	class="ace-main-stylesheet" id="main-ace-style" />
 
 <script src="<c:url value='/common/admin2/assets/js/ace-extra.min.js'/>"></script>
+
+<script src="<c:url value='/common/paging/jquery.min.js' />"></script>
+<script src="<c:url value='/common/paging/bootstrap.min.js' />"></script>

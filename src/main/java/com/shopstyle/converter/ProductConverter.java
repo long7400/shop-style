@@ -18,10 +18,23 @@ public class ProductConverter {
 		result.setPrice(entity.getPrice());
 		result.setQuantity(entity.getQuantity());
 		result.setShop(entity.getShop());
+		result.setImage(entity.getImage());
 		result.setContent(entity.getContent());
 		result.setCategoryCode(entity.getCategory().getCode());
-		
 		return result;
-
+	}
+	
+	public ProductEntity toEntity(ProductDTO dto) {
+		ProductEntity result = new ProductEntity();
+		result.setTitle(dto.getTitle());
+		result.setSummary(dto.getSummary());
+		result.setColor(dto.getColor());
+		result.setSize(dto.getSize());
+		result.setPrice(dto.getPrice());
+		result.setQuantity(dto.getQuantity());
+		result.setShop(dto.getShop());
+		result.setImage(dto.getImage());
+		result.setContent(dto.getContent());
+		return result;
 	}
 }

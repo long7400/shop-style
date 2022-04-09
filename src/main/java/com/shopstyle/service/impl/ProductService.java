@@ -41,7 +41,8 @@ public class ProductService implements IProductService{
 	@Override
 	public ProductDTO findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		ProductEntity productEntity = productRepository.findOne(id);
+		return productConvert.toDto(productEntity);
 	}
 
 	@Override
