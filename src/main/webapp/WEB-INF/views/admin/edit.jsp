@@ -15,11 +15,12 @@
 </head>
 <body>
 	<div id="layoutSidenav_content">
-
-
 		<form:form style="background-color: #e4e6e9;"
 			class="well form-horizontal" action="" method="post" id="formSubmit"
 			modelAttribute="model">
+			<c:if test="${not empty message}">
+				<div class="alert alert-${alert}">${message}</div>
+			</c:if>
 			<fieldset>
 				<c:if test="${not empty model.id}">
 					<center>
@@ -189,7 +190,7 @@
 							</button>
 						</c:if>
 						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-						<button type="submit" class="btn btn-danger">
+						<button type="submit" class="btn btn-danger" onclick="btnBack()">
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCANCEL <span
 								class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 						</button>
@@ -232,10 +233,10 @@
 		            data: JSON.stringify(data),
 		            dataType: 'json',
 		            success: function (result) {
-		            	window.location.href = "${editProductURL}?id="+result.id;
+		            	window.location.href = "${productURL}?page=1&limit=30&message=insert_success";
 		            },
 		            error: function (error) {
-		            	window.location.href = "${productURL}?page=1&limit=30";
+		            	window.location.href = "${productURL}?page=1&limit=30&message=error_system";
 		            }
 		        });
 			}
@@ -248,13 +249,17 @@
 		            data: JSON.stringify(data),
 		            dataType: 'json',
 		            success: function (result) {
-		            	window.location.href = "${editProductURL}?id="+result.id;
+		            	window.location.href = "${editProductURL}?id="+result.id+"&message=update_success";
 		            },
 		            error: function (error) {
 		            	window.location.href = "${editProductURL}?id="+result.id+"&message=error_system";
 		            }
 		        });
 			}
+			
+			function btnBack() {
+				window.location.href = "${productURL}?page=1&limit=30";
+			} 
 
 		});
 	</script>

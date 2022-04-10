@@ -18,7 +18,7 @@ public class ProductEntity extends BaseEntity{
 	@Column(name = "title")
 	private String title;
 	
-	@Column(name = "summary", columnDefinition = "TINYTEXT", nullable = false)
+	@Column(name = "summary", columnDefinition = "TEXT", nullable = false)
 	private String summary;
 		
 	@Column(name = "color")

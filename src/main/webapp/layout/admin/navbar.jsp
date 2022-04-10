@@ -24,7 +24,7 @@
 			aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 			<ul class="dropdown-menu dropdown-menu-end"
 				aria-labelledby="navbarDropdown">
-				<li><a class="dropdown-item" href="/home-admin/list">Settings</a></li>
+				<li><a class="dropdown-item" href="/home-admin/listProduct?page=1&limit=30">Settings</a></li>
 				<li><a class="dropdown-item"  href="<c:url value='/home-admin'/>"><%=SecurityUtils.getPrincipal().getFullName()%></a></li>
 				<li><hr class="dropdown-divider" /></li>
 				<li><a class="dropdown-item" href="<c:url value='/thoat'/>">Logout</a></li>

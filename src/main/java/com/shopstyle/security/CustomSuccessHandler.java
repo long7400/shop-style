@@ -46,12 +46,9 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
 	private String determineTargetUrl(Authentication authentication) {
 		String url = "";
-		
-		//if is admin -> /home-admin
-		//if is user -> /home-page
 		List<String> roles = SecurityUtils.getAuthorities();
 		if (isAdmin(roles)) {
-			url = "/home-admin?page=1&limit=30";
+			url = "/home-admin/listProduct?page=1&limit=30";
 		} else if (isUser(roles)) {
 			url = "/home-page";
 		}

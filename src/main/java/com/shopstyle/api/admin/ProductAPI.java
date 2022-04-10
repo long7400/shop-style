@@ -29,6 +29,6 @@ public class ProductAPI {
 	
 	@DeleteMapping("/api/product")
 	public void deleteNew(@RequestBody long[] ids) {
-		System.out.println("ok");
+		productService.delete(ids);
 	}
 }

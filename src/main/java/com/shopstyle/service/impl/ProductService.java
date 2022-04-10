@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +50,19 @@ public class ProductService implements IProductService{
 		ProductEntity productEntity = productRepository.findOne(id);
 		return productConvert.toDto(productEntity);
 	}
-
+	
+//	
+//	public String enCryptPassword(String value) {
+//		int i = 0;
+//		String hashedPassword = "";
+//		while (i < 5) {
+//			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//			hashedPassword = passwordEncoder.encode(value);
+//			i++;	
+//		}
+//		return hashedPassword;
+//	}
+//	
 	@Override
 	@Transactional
 	public ProductDTO save(ProductDTO dto) {
@@ -61,6 +74,7 @@ public class ProductService implements IProductService{
 			productEntity = productConvert.toEntity(oldProduct, dto);
 		} else {
 			productEntity = productConvert.toEntity(dto);
+//			productEntity.setSummary(enCryptPassword(productEntity.getSummary()));
 			productEntity.setCategory(category);
 		}
 		return productConvert.toDto(productRepository.save(productEntity));
