@@ -12,7 +12,7 @@
 
 <body>
 	<div id="layoutSidenav_content">
-	<form action="<c:url value='/home-admin/list'/>" id="formSubmit" method="get">
+	<form action="<c:url value='/home-admin/listProduct'/>" id="formSubmit" method="get">
 		<div class="main-content">
 			
 			
@@ -35,7 +35,7 @@
 									<div class="table-btn-controls">
 										<div class="pull-right tableTools-container">
 											<div class="dt-buttons btn-overlap btn-group">
-												<c:url var="createNewURL" value="/home-admin/edit" />
+												<c:url var="createNewURL" value="/home-admin/editProduct" />
 												<a flag="info" class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Thêm bài viết' href='${createNewURL}'> 
 													<span>
 															<i class="fa fa-plus-circle bigger-110 purple"></i>
@@ -72,7 +72,7 @@
 															<td>${item.summary}</td>
 															<td>${item.quantity}</td>
 															<td>
-																<c:url var="updateNewURL" value="/home-admin/edit">
+																<c:url var="updateNewURL" value="/home-admin/editProduct">
 																	<c:param name="id" value="${item.id}"/>															
 																</c:url>																
 																<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"

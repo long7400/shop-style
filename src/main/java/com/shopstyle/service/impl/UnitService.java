@@ -16,7 +16,18 @@ public class UnitService implements IUnitService{
 		result.put("RED", "RED");
 		result.put("YELLOW", "YELLOW");
 		result.put("ORANGE", "ORANGE");
-		result.put("GREED", "GREED");
+		result.put("GREEN", "GREEN");
+		return result;
+	}
+
+	@Override
+	public Map<String, String> mSize() {
+		Map<String, String> result = new HashMap<>();
+		result.put("XXXL", "XXXL");
+		result.put("XXL", "XXL");
+		result.put("XL", "XL");
+		result.put("L", "L");
+		result.put("M", "M");
 		return result;
 	}
 

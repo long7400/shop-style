@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.shopstyle.converter.ProductConverter;
 import com.shopstyle.dto.ProductDTO;
+import com.shopstyle.entity.CategoryEntity;
 import com.shopstyle.entity.ProductEntity;
+import com.shopstyle.repository.CategoryRepository;
 import com.shopstyle.repository.ProductRepository;
 import com.shopstyle.service.IProductService;
 
@@ -21,6 +24,9 @@ public class ProductService implements IProductService{
 	
 	@Autowired
 	private ProductConverter productConvert;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public List<ProductDTO> findAll(Pageable pageable) {
@@ -40,21 +46,31 @@ public class ProductService implements IProductService{
 
 	@Override
 	public ProductDTO findById(long id) {
-		// TODO Auto-generated method stub
 		ProductEntity productEntity = productRepository.findOne(id);
 		return productConvert.toDto(productEntity);
 	}
 
 	@Override
+	@Transactional
 	public ProductDTO save(ProductDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		CategoryEntity category = categoryRepository.findOneByCode(dto.getCategoryCode());
+		ProductEntity productEntity = new ProductEntity();
+		if (dto.getId() != null) {
+			ProductEntity oldProduct = productRepository.findOne(dto.getId());
+			oldProduct.setCategory(category);
+			productEntity = productConvert.toEntity(oldProduct, dto);
+		} else {
+			productEntity = productConvert.toEntity(dto);
+			productEntity.setCategory(category);
+		}
+		return productConvert.toDto(productRepository.save(productEntity));
 	}
 
 	@Override
 	public void delete(long[] ids) {
-		// TODO Auto-generated method stub
-		
+		for (long id: ids) {
+			productRepository.delete(id);
+		}
 	}
 	
 	

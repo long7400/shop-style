@@ -28,7 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	//Authentication
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 		UserEntity userEntity = userRepository.findOneByUserNameAndStatus(username, SystemConstant.ACTIVE_STATUS);
 		
 		if(userEntity == null) {

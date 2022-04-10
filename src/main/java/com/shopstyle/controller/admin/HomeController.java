@@ -45,7 +45,7 @@ public class HomeController {
 	}
 	// Sử dụng chung update and new required = false sử dụng để khi không có id sẽ dục mịa cái vl = id kia
 	// Nôm na if => request // else => Không lấy
-	@RequestMapping(value = "/home-admin/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/home-admin/editProduct", method = RequestMethod.GET)
 	public ModelAndView editPage(@RequestParam(value = "id", required = false) Long id) {
 		ModelAndView mav = new ModelAndView("admin/edit");
 		ProductDTO productDTO = new ProductDTO();
@@ -54,11 +54,12 @@ public class HomeController {
 		}
 		mav.addObject("categories", iCategoryService.findAll());
 		mav.addObject("color", iUnitService.mColor());
+		mav.addObject("size", iUnitService.mSize());
 		mav.addObject("model", productDTO);
 		return mav;
 	}
 	
-	@RequestMapping(value = "/home-admin/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/home-admin/listProduct", method = RequestMethod.GET)
 	public ModelAndView listPage() {
 		ModelAndView mav = new ModelAndView("admin/list");
 		return mav;

@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="/layout/taglib.jsp"%>
 
-<c:url var="newURL" value="" />
-<c:url var="editNewURL" value="" />
-<c:url var="newAPI" value="/api/new" />
+<c:url var="productURL" value="/home-admin/listProduct" />
+<c:url var="editProductURL" value="/home-admin/editProduct" />
+<c:url var="productAPI" value="/api/product" />
+
 
 <html>
 <head>
@@ -40,7 +41,7 @@
 				<hr width="100%" align="center" />
 				<!-- Text input-->
 
-
+				<form:hidden path="id" id="productID"/>
 				<div class="form-group">
 					<label for="title" class="col-md-4 control-label">Tên sản
 						phẩm</label>
@@ -61,8 +62,8 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> 
-								<form:input path="content" cssClass="form-control" />
+								class="glyphicon glyphicon-user"></i></span>
+							<form:input path="content" cssClass="form-control" />
 						</div>
 					</div>
 				</div>
@@ -72,11 +73,11 @@
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-list"></i></span> 
-								<form:select path="color" id="color">
-							  	 	<form:option value="" label="-- Chọn COLOR --"/>
-							  	 	<form:options items="${color}" />
-							  	 </form:select>
+								class="glyphicon glyphicon-list"></i></span>
+							<form:select path="color" id="color">
+								<form:option value="" label="-- Chọn COLOR --" />
+								<form:options items="${color}" />
+							</form:select>
 						</div>
 					</div>
 				</div>
@@ -86,8 +87,11 @@
 					<div class="col-md-4 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-list"></i></span> 
-
+								class="glyphicon glyphicon-list"></i></span>
+							<form:select path="size" id="size">
+								<form:option value="" label="-- Chọn SIZE --" />
+								<form:options items="${size}" />
+							</form:select>
 
 						</div>
 					</div>
@@ -101,8 +105,8 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> 
-								<form:input path="price" cssClass="form-control" />
+								class="glyphicon glyphicon-user"></i></span>
+							<form:input path="price" cssClass="form-control" />
 						</div>
 					</div>
 				</div>
@@ -114,8 +118,8 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> 
-								<form:input path="quantity" cssClass="form-control" />
+								class="glyphicon glyphicon-user"></i></span>
+							<form:input path="quantity" cssClass="form-control" />
 						</div>
 					</div>
 				</div>
@@ -127,7 +131,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span>
-								<form:textarea path="summary" cssClass="form-control" id="summary" rows="5" cols="10"/>
+							<form:textarea path="summary" cssClass="form-control"
+								id="summary" rows="5" cols="10" />
 						</div>
 					</div>
 				</div>
@@ -137,8 +142,8 @@
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> 
-								<form:input path="image" cssClass="form-control"/>
+								class="glyphicon glyphicon-user"></i></span>
+							<input type="file" class="control" id="image" name="image"/>
 						</div>
 					</div>
 				</div>
@@ -165,7 +170,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-4">
-						<c:url var="createProduct" value="/home-admin/edit" />
+						<c:url var="createProduct" value="/home-admin/editProduct" />
 						<br>
 						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 						<c:if test="${not empty model.id}">
@@ -205,9 +210,51 @@
 		$(document).ready(function() {
 			$('#btnAddOrUpdateNew').click(function(e) {
 				e.preventDefault();
+				var data = {};
 				var formData = $('#formSubmit').serializeArray();
-				console.log(formData);
+				$.each(formData, function (i, v) {
+		            data[""+v.name+""] = v.value;
+		        });
+				var id = $('#productID').val();
+				if(id == ""){
+					addProduct(data);
+				}else{
+					updateProduct(data);
+				}
+
 			});
+			
+			function addProduct(data){
+				$.ajax({
+		            url: '${productAPI}',
+		            type: 'POST',
+		            contentType: 'application/json',
+		            data: JSON.stringify(data),
+		            dataType: 'json',
+		            success: function (result) {
+		            	window.location.href = "${editProductURL}?id="+result.id;
+		            },
+		            error: function (error) {
+		            	window.location.href = "${productURL}?page=1&limit=30";
+		            }
+		        });
+			}
+			
+			function updateProduct(data){
+				$.ajax({
+		            url: '${productAPI}',
+		            type: 'PUT',
+		            contentType: 'application/json',
+		            data: JSON.stringify(data),
+		            dataType: 'json',
+		            success: function (result) {
+		            	window.location.href = "${editProductURL}?id="+result.id;
+		            },
+		            error: function (error) {
+		            	window.location.href = "${editProductURL}?id="+result.id+"&message=error_system";
+		            }
+		        });
+			}
 
 		});
 	</script>

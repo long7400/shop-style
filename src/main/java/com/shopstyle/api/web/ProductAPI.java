@@ -3,7 +3,7 @@ package com.shopstyle.api.web;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController(value = "newAPIOfWeb")
-public class NewAPI {
+public class ProductAPI {
 	
 	
 }
