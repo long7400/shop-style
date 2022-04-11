@@ -1,8 +1,8 @@
 <%@include file="/layout/taglib.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<c:url var="productAPI" value="/api/product" />
-<c:url var="productURL" value="/home-admin/listProduct" />
+<c:url var="categoryAPI" value="/api/category" />
+<c:url var="categoryURL" value="/home-admin/listCategory" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -13,12 +13,10 @@
 
 <body>
 	<div id="layoutSidenav_content">
-		<form action="<c:url value='/home-admin/listProduct'/>"
+		<form action="<c:url value='/home-admin/listCategory'/>"
 			id="formSubmit" method="get">
 			<div class="main-content">
-
-
-
+			
 				<div class="main-content-inner">
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 						<ul class="breadcrumb">
@@ -37,11 +35,11 @@
 									<div class="table-btn-controls">
 										<div class="pull-right tableTools-container">
 											<div class="dt-buttons btn-overlap btn-group">
-												<c:url var="createNewURL" value="/home-admin/editProduct" />
+												<c:url var="createCategoryURL" value="/home-admin/editCategory" />
 												<a flag="info"
 													class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
 													data-toggle="tooltip" title='Thêm bài viết'
-													href='${createNewURL}'> <span> <i
+													href='${createCategoryURL}'> <span> <i
 														class="fa fa-plus-circle bigger-110 purple"></i>
 												</span>
 												</a>
@@ -63,9 +61,8 @@
 												<thead>
 													<tr>
 														<th><input type="checkbox" id="checkAll"></th>
-														<th>Tên sản phẩm</th>
-														<th>Mô tả ngắn</th>
-														<th>Số lượng</th>
+														<th>Danh mục</th>
+														<th>Mã code danh mục</th>
 														<th>Thao tác</th>
 													</tr>
 												</thead>
@@ -74,15 +71,14 @@
 													<c:forEach var="item" items="${model.listResult}">
 														<tr>
 															<td><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
-															<td>${item.title}</td>
-															<td>${item.content}</td>
-															<td>${item.quantity}</td>
-															<td><c:url var="updateNewURL"
-																	value="/home-admin/editProduct">
+															<td>${item.name}</td>
+															<td>${item.code}</td>
+															<td><c:url var="updateCategoryURL"
+																	value="/home-admin/editCategory">
 																	<c:param name="id" value="${item.id}" />
 																</c:url> <a class="btn btn-sm btn-primary btn-edit"
 																data-toggle="tooltip" title="Cập nhật bài viết"
-																href='${updateNewURL}'><i
+																href='${updateCategoryURL}'><i
 																	class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
 															</td>
 														</tr>
@@ -143,15 +139,15 @@
 		
 		function deleteNew(data) {
 	        $.ajax({
-	            url: '${productAPI}',
+	            url: '${categoryAPI}',
 	            type: 'DELETE',
 	            contentType: 'application/json',
 	            data: JSON.stringify(data),
 	            success: function (result) {
-	                window.location.href = "${productURL}?page=1&limit=30&message=delete_success";
+	                window.location.href = "${categoryURL}?page=1&limit=30&message=delete_success";
 	            },
 	            error: function (error) {
-	            	window.location.href = "${productURL}?page=1&limit=30&message=error_system";
+	            	window.location.href = "${categoryURL}?page=1&limit=30&message=error_system";
 	            }
 	        });
 	    }

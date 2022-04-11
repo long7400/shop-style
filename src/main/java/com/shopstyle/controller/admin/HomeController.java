@@ -44,7 +44,7 @@ public class HomeController {
 	// Nôm na if => request // else => Không lấy
 	@RequestMapping(value = "/home-admin/editProduct", method = RequestMethod.GET)
 	public ModelAndView editPage(@RequestParam(value = "id", required = false) Long id,	HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("admin/edit");
+		ModelAndView mav = new ModelAndView("admin/product/edit");
 		ProductDTO productDTO = new ProductDTO();
 		if(id != null) {
 			productDTO = iProductService.findById(id);
@@ -67,7 +67,7 @@ public class HomeController {
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setPage(page);
 		productDTO.setLimit(limit);
-		ModelAndView mav = new ModelAndView("admin/list");
+		ModelAndView mav = new ModelAndView("admin/product/list");
 		Pageable pageable = new PageRequest(page - 1, limit);
 		productDTO.setListResult(iProductService.findAll(pageable));
 		productDTO.setTotalItem(iProductService.getTotalItem());

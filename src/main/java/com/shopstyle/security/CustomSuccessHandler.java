@@ -48,7 +48,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		String url = "";
 		List<String> roles = SecurityUtils.getAuthorities();
 		if (isAdmin(roles)) {
-			url = "/home-admin/listProduct?page=1&limit=30";
+			url = "//home-admin/listCategory?page=1&limit=30";
 		} else if (isUser(roles)) {
 			url = "/home-page";
 		}

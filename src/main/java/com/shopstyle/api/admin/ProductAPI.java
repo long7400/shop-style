@@ -11,24 +11,24 @@ import com.shopstyle.dto.ProductDTO;
 import com.shopstyle.service.IProductService;
 
 
-@RestController(value = "newAPIOfAdmin")
+@RestController(value = "productAPIOfAdmin")
 public class ProductAPI {
 	
 	@Autowired
 	private IProductService productService;
 	
 	@PostMapping("/api/product")
-	public ProductDTO createNew(@RequestBody ProductDTO productDTO) {
+	public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
 		return productService.save(productDTO);
 	}
 	
 	@PutMapping("/api/product")
-	public ProductDTO updateNew(@RequestBody ProductDTO productDTO) {
+	public ProductDTO updateProduct(@RequestBody ProductDTO productDTO) {
 		return productService.save(productDTO);
 	}
 	
 	@DeleteMapping("/api/product")
-	public void deleteNew(@RequestBody long[] ids) {
+	public void deleteProduct(@RequestBody long[] ids) {
 		productService.delete(ids);
 	}
 }

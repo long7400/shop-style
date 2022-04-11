@@ -22,4 +22,10 @@ public class CategoryConverter {
 		result.setName(dto.getName());
 		return result;
 	}
+	
+	public CategoryEntity toEntity(CategoryEntity result,CategoryDTO dto) {
+		result.setCode(dto.getCode());
+		result.setName(dto.getName());
+		return result;
+	}
 }
