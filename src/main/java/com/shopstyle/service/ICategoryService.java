@@ -10,6 +10,8 @@ import com.shopstyle.dto.CategoryDTO;
 public interface ICategoryService {
 	Map<String, String> findAll();
 	
+	List<String> findAllName();
+	
 	List<CategoryDTO> findAll(Pageable pageable);
 	int getTotalItem();
 	CategoryDTO findById(long id);

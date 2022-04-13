@@ -1,37 +1,39 @@
 package com.shopstyle.controller.web;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.shopstyle.dto.CartItemDTO;
+import com.shopstyle.util.CoutCart;
+
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
-
+	
+	
+	@ModelAttribute
+	public void commonAtr(Model model, HttpSession httpSession) {
+		model.addAttribute("cartCounter", CoutCart.coutCart((Map<Long, CartItemDTO>) httpSession.getAttribute("cart")));
+	}
+	
 	@RequestMapping(value = "/home-page", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("web/home");
 		return mav;
 	}
-	
-	@RequestMapping(value = "/home-page/cart-page", method = RequestMethod.GET)
-	public ModelAndView cartPage() {
-		ModelAndView mav = new ModelAndView("web/shopcart");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/home-page/detail-page", method = RequestMethod.GET)
-	public ModelAndView detailPage() {
-		ModelAndView mav = new ModelAndView("web/detail");
-		return mav;
-	}
-	
+
 	@RequestMapping(value = "/home-page/contact-page", method = RequestMethod.GET)
 	public ModelAndView contactPage() {
 		ModelAndView mav = new ModelAndView("web/contact");

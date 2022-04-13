@@ -1,5 +1,9 @@
 package com.shopstyle.controller.web;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shopstyle.dto.ProductDTO;
 import com.shopstyle.service.IProductService;
+import com.shopstyle.util.MessageUtil;
 
 @Controller(value = "productControllerOfWeb")
 public class ProductController {
@@ -18,6 +23,9 @@ public class ProductController {
 	@Autowired
 	private IProductService iProductService;
 
+	@Autowired
+	private MessageUtil messageUtil;
+	
 	@RequestMapping(value = "/home-page/shop-page", method = RequestMethod.GET)
 	public ModelAndView shopPage(@RequestParam("page") int page, 
 			@RequestParam("limit") int limit) {
@@ -32,5 +40,20 @@ public class ProductController {
 		mav.addObject("model", productDTO);
 		return mav;
 	}
-
+	
+	@RequestMapping(value = "/home-page/detail-page", method = RequestMethod.GET)
+	public ModelAndView detailPage(@RequestParam(value = "id", required = false) Long id,	HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("web/detail");
+		ProductDTO productDTO = new ProductDTO();
+		if(id != null) {
+			productDTO = iProductService.findById(id);
+		}
+		if (request.getParameter("message") != null) {
+			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			mav.addObject("message", message.get("message"));
+			mav.addObject("alert", message.get("alert"));
+		}
+		mav.addObject("model", productDTO);
+		return mav;
+	}
 }

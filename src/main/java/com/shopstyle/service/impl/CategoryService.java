@@ -35,7 +35,18 @@ public class CategoryService implements ICategoryService {
 		}
 		return result;
 	}
-
+	
+	@Override
+	public List<String> findAllName() {
+		List<String> loadmenu = new ArrayList<>();
+		List<CategoryEntity> entities = categoryRepository.findAll();
+		for (CategoryEntity item: entities) {
+			loadmenu.add(item.getName());
+		}
+		return loadmenu;
+	}
+	
+	
 	@Override
 	public List<CategoryDTO> findAll(Pageable pageable) {
 		List<CategoryDTO> models = new ArrayList<>();
@@ -80,4 +91,6 @@ public class CategoryService implements ICategoryService {
 			categoryRepository.delete(id);
 		}
 	}
+
+	
 }

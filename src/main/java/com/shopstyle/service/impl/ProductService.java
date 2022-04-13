@@ -38,7 +38,17 @@ public class ProductService implements IProductService{
 		}
 		return models;
 	}
-
+	@Override
+	public List<ProductDTO> findAll() {
+		List<ProductDTO> models = new ArrayList<>();
+		List<ProductEntity> entities = productRepository.findAll();
+		for (ProductEntity item: entities) {
+			ProductDTO productDTO = productConvert.toDto(item);
+			models.add(productDTO);
+		}
+		return models;
+	}
+	
 	@Override
 	public int getTotalItem() {
 		return (int) productRepository.count();
@@ -85,6 +95,8 @@ public class ProductService implements IProductService{
 			productRepository.delete(id);
 		}
 	}
+
+
 	
 	
 }

@@ -21,5 +21,5 @@
 <script src="<c:url value='/common/paging/bootstrap.min.js' />"></script>
 
 
-
+<script src="<c:url value='/common/main/main.js' />"></script>
 	

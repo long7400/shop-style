@@ -34,6 +34,10 @@
 
 	</bean>
 	
+	<mvc:interceptors>
+		<bean class="com.shopstyle.interceptor.MenuHandleInterceptor"></bean>
+	</mvc:interceptors>
+	
 	<mvc:resources location="/layout/" mapping="/layout/**"/>
 	<mvc:resources location="/common/" mapping="/common/**"/>
 </beans>

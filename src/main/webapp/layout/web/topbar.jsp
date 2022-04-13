@@ -42,11 +42,10 @@
 			</form>
 		</div>
 		<div class="col-lg-3 col-6 text-right">
-			<a href="" class="btn border"> <i
-				class="fas fa-heart text-primary"></i> <span class="badge">0</span>
-			</a> <a href="" class="btn border"> <i
-				class="fas fa-shopping-cart text-primary"></i> <span class="badge">0</span>
-			</a>
+		
+			<a href="<c:url value='/home-page/cart'/>" class="btn border"> <i
+				class="fas fa-shopping-cart text-primary"></i> <span class="badge" id="cartCouter">${cartCounter}</span>
+			</a> 
 		</div>
 	</div>
 </div>
