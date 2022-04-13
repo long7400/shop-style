@@ -54,12 +54,12 @@
 							
 							<td class="align-middle">
 								<div>
-									<input type="number" onclick="addToCart(${item.product_id})" value="${item.quantity}" class="form-control">
+									<input type="number" onblur="updateCart(this,${item.product_id})" value="${item.quantity}" class="form-control">
 								</div>
 							</td>
 							<td class="align-middle">${item.price}</td>
 							<td class="align-middle">
-								<input type="button" value="Delete" class="btn btn-danger" />
+								<input type="button" value="Delete" class="btn btn-danger" onclick="deleteCart(${item.product_id})"/>
 							</td>
 					
 						</tr>

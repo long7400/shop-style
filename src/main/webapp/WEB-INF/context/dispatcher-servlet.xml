@@ -20,8 +20,7 @@
 
               http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan
-	base-package="com.shopstyle.controller, com.shopstyle.api" />
+	<context:component-scan base-package="com.shopstyle.controller, com.shopstyle.api" />
 
 	<mvc:annotation-driven />
 
@@ -30,7 +29,7 @@
 
 		<property name="prefix" value="/WEB-INF/views/" />
 
-		<property name="suffix" value=".jsp" />
+		<property name="suffix" value=".jsp" /> 
 
 	</bean>
 	

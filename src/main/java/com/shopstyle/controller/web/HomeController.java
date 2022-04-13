@@ -36,7 +36,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/home-page/contact-page", method = RequestMethod.GET)
 	public ModelAndView contactPage() {
-		ModelAndView mav = new ModelAndView("web/contact");
+		ModelAndView mav = new ModelAndView("web/contact"); // /WEB-INF/views/web/contact.jsp
 		return mav;
 	}
 	

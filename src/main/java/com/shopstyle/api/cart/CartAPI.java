@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,7 @@ public class CartAPI {
 			CartItemDTO cartItemDTO = new CartItemDTO();
 			cartItemDTO.setProduct_id(p.getId());
 			cartItemDTO.setProduct_name(p.getTitle());
+			cartItemDTO.setCart_id(null);
 			cartItemDTO.setPrice(p.getPrice());
 			cartItemDTO.setQuantity(1);
 			
@@ -59,21 +61,31 @@ public class CartAPI {
 		return new  ResponseEntity<>(CoutCart.coutCart(cart), HttpStatus.OK);
 	}
 	
-	@PutMapping("home-page/api/cart/{id}")
-	public ResponseEntity<Integer> cartUpdate(@PathVariable(value = "id") Long id, HttpSession httpSession, @RequestBody CartItemDTO par) {
+	@PutMapping("home-page/api/cart")
+	public ResponseEntity<Integer> cartUpdate( @RequestBody CartItemDTO par, HttpSession httpSession) {
 		Map<Long,CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
 		if(cart == null) {
 			cart = new HashMap<>();
 		}
-		if(cart.containsKey(id) == true) {
-			CartItemDTO cartItemDTO = cart.get(id);
+		
+		Long id = par.getProduct_id();
+		if(cart.containsKey(id)) {
+			CartItemDTO cartItemDTO = new CartItemDTO();
 			cartItemDTO.setQuantity(par.getQuantity());
 		}
-		
 		httpSession.setAttribute("cart", cart);
 		
 		return new  ResponseEntity<>(CoutCart.coutCart(cart), HttpStatus.OK);
 	}
 	
-
+	@DeleteMapping("home-page/api/cart/{id}")
+	public ResponseEntity<Integer> cartDelete( @PathVariable(value = "id") Long id, HttpSession httpSession) {
+		Map<Long,CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
+		if(cart != null && cart.containsKey(id)) {
+			cart.remove(id);
+			httpSession.setAttribute("cart", cart);	
+		}
+		return new  ResponseEntity<>(CoutCart.coutCart(cart), HttpStatus.OK);
+	}
+	
 }
