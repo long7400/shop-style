@@ -52,6 +52,12 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/dang-ky", method = RequestMethod.GET)
+	public ModelAndView resPage() {
+		ModelAndView mav = new ModelAndView("dangky");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/thoat", method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // isAuthenticated()

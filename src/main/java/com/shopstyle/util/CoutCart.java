@@ -13,4 +13,13 @@ public class CoutCart {
 		}
 		return cout;
 	}
+	
+	public static int totalCart(Map<Long,CartItemDTO> cart) {
+		int cout = 0;
+		if(cart != null) {
+			for(CartItemDTO c:cart.values())
+				cout += c.getQuantity() * c.getPrice();
+		}
+		return cout;
+	}
 }

@@ -67,15 +67,11 @@ public class CartAPI {
 		if(cart == null) {
 			cart = new HashMap<>();
 		}
+		CartItemDTO c = cart.get(par.getProduct_id());
+		c.setQuantity(par.getQuantity());
+//		httpSession.setAttribute("cart", cart);
 		
-		Long id = par.getProduct_id();
-		if(cart.containsKey(id)) {
-			CartItemDTO cartItemDTO = new CartItemDTO();
-			cartItemDTO.setQuantity(par.getQuantity());
-		}
-		httpSession.setAttribute("cart", cart);
-		
-		return new  ResponseEntity<>(CoutCart.coutCart(cart), HttpStatus.OK);
+		return new  ResponseEntity<>(CoutCart.totalCart(cart), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("home-page/api/cart/{id}")
