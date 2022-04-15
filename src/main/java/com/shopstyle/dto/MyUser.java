@@ -7,12 +7,18 @@ import org.springframework.security.core.userdetails.User;
 
 public class MyUser extends User {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public MyUser(String username, String password, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
-
+	
+	private Long id;
 	private String fullName;
 
 	public String getFullName() {
@@ -21,5 +27,13 @@ public class MyUser extends User {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

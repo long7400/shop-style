@@ -23,6 +23,7 @@ import com.shopstyle.util.CoutCart;
 public class HomeController {
 	
 	
+	@SuppressWarnings("unchecked")
 	@ModelAttribute
 	public void commonAtr(Model model, HttpSession httpSession) {
 		model.addAttribute("cartCounter", CoutCart.coutCart((Map<Long, CartItemDTO>) httpSession.getAttribute("cart")));
@@ -37,12 +38,6 @@ public class HomeController {
 	@RequestMapping(value = "/home-page/contact-page", method = RequestMethod.GET)
 	public ModelAndView contactPage() {
 		ModelAndView mav = new ModelAndView("web/contact"); // /WEB-INF/views/web/contact.jsp
-		return mav;
-	}
-	
-	@RequestMapping(value = "/home-page/checkout-page", method = RequestMethod.GET)
-	public ModelAndView checkoutPage() {
-		ModelAndView mav = new ModelAndView("web/checkout");
 		return mav;
 	}
 	

@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,26 +23,27 @@ import com.shopstyle.util.CoutCart;
 
 @RestController
 public class CartAPI {
-	
+
 	@Autowired
 	private IProductService iProductService;
-	
+
 	@GetMapping("api/cartProduct")
-	public ResponseEntity<List<ProductDTO>> listProduct(){
+	public ResponseEntity<List<ProductDTO>> listProduct() {
 		List<ProductDTO> prs = this.iProductService.findAll();
 		return new ResponseEntity<>(prs, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("home-page/api/cart/{id}")
 	public ResponseEntity<Integer> cart(@PathVariable(value = "id") Long id, HttpSession httpSession) {
-		Map<Long,CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
-		if(cart == null) {
+		@SuppressWarnings("unchecked")
+		Map<Long, CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
+		if (cart == null) {
 			cart = new HashMap<>();
 		}
-		if(cart.containsKey(id) == true) {
+		if (cart.containsKey(id) == true) {
 			CartItemDTO cartItemDTO = cart.get(id);
-			cartItemDTO.setQuantity(cartItemDTO.getQuantity()+1);
-		}else {
+			cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
+		} else {
 			ProductDTO p = this.iProductService.findById(id);
 
 			CartItemDTO cartItemDTO = new CartItemDTO();
@@ -52,36 +52,37 @@ public class CartAPI {
 			cartItemDTO.setCart_id(null);
 			cartItemDTO.setPrice(p.getPrice());
 			cartItemDTO.setQuantity(1);
-			
+
 			cart.put(id, cartItemDTO);
 		}
-		
+
 		httpSession.setAttribute("cart", cart);
-		
-		return new  ResponseEntity<>(CoutCart.coutCart(cart), HttpStatus.OK);
+
+		return new ResponseEntity<>(CoutCart.coutCart(cart), HttpStatus.OK);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@PutMapping("home-page/api/cart")
-	public ResponseEntity<Integer> cartUpdate( @RequestBody CartItemDTO par, HttpSession httpSession) {
-		Map<Long,CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
-		if(cart == null) {
+	public ResponseEntity<Integer> cartUpdate(@RequestBody CartItemDTO par, HttpSession httpSession) {
+		Map<Long, CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
+		if (cart == null) {
 			cart = new HashMap<>();
 		}
 		CartItemDTO c = cart.get(par.getProduct_id());
 		c.setQuantity(par.getQuantity());
-//		httpSession.setAttribute("cart", cart);
-		
-		return new  ResponseEntity<>(CoutCart.totalCart(cart), HttpStatus.OK);
+
+		return new ResponseEntity<>(CoutCart.totalCart(cart), HttpStatus.OK);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@DeleteMapping("home-page/api/cart/{id}")
-	public ResponseEntity<Integer> cartDelete( @PathVariable(value = "id") Long id, HttpSession httpSession) {
-		Map<Long,CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
-		if(cart != null && cart.containsKey(id)) {
+	public ResponseEntity<Integer> cartDelete(@PathVariable(value = "id") Long id, HttpSession httpSession) {
+		Map<Long, CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
+		if (cart != null && cart.containsKey(id)) {
 			cart.remove(id);
-			httpSession.setAttribute("cart", cart);	
+			httpSession.setAttribute("cart", cart);
 		}
-		return new  ResponseEntity<>(CoutCart.coutCart(cart), HttpStatus.OK);
+		return new ResponseEntity<>(CoutCart.totalCart(cart), HttpStatus.OK);
 	}
-	
+
 }

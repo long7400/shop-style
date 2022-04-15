@@ -7,8 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +17,6 @@ import com.shopstyle.dto.CartRequest;
 import com.shopstyle.entity.CartItemEntity;
 import com.shopstyle.entity.ProductEntity;
 import com.shopstyle.repository.CartItemRepository;
-import com.shopstyle.repository.CartRepository;
 import com.shopstyle.repository.ProductRepository;
 
 @Controller
@@ -29,11 +26,10 @@ public class CartController {
 	private CartItemRepository cartItemRepository;
 
 	@Autowired
-	private CartRepository cartRepository;
-
-	@Autowired
 	private ProductRepository productRepository;
+
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/home-page/cart", method = RequestMethod.GET)
 	public ModelAndView cartPage( HttpSession httpSession) {
 		ModelAndView mav = new ModelAndView("web/shopcart");
@@ -47,9 +43,9 @@ public class CartController {
 		return mav;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/updateCart", method = RequestMethod.POST)
 	public ModelAndView updateCart(HttpSession httpSession, @ModelAttribute("carts") CartRequest cartRequest) {
-//		CartEntity c = cartRepository.save(new CartEntity());
 		ModelAndView mav = new ModelAndView("web/shopcart");
 		Map<Long, CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
 		for (CartItemDTO cartItemDTO: cartRequest.getCartItemDTOS()) {
@@ -62,19 +58,17 @@ public class CartController {
 
 			CartItemDTO cartItemDTO1 = cart.get(cartItemDTO.getProduct_id());
 			cartItemDTO1.setQuantity(cartItemDTO.getQuantity());
-
 		}
-
 
 		CartRequest cartRequest2 = new CartRequest();
 		if(cart != null) {
-//			List<V> al = ;
 			cartRequest2.setCartItemDTOS(new ArrayList<CartItemDTO>(cart.values()));
 		}else {
-//			mav.addObject("carts", null);
+			System.err.println("NULL");
 		}
 		mav.addObject("carts", cartRequest2);
 
 		return mav;
 	}
+
 }

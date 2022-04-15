@@ -6,4 +6,5 @@ import com.shopstyle.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	UserEntity findOneByUserNameAndStatus(String name, int status);
+	
 }
