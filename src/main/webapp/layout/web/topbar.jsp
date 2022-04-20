@@ -1,5 +1,7 @@
 <%@ page import="com.shopstyle.util.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/layout/taglib.jsp"%>
+<c:url var="newURL" value="/home-page/shop-page" />
 <div class="container-fluid">
 	<div class="row bg-secondary py-2 px-xl-5">
 		<div class="col-lg-6 d-none d-lg-block">
@@ -29,9 +31,9 @@
 			</a>
 		</div>
 		<div class="col-lg-6 col-6 text-left">
-			<form action="">
+			<form action="${pageContext.request.contextPath}/home-page/shop-page2?page=1&limit=2">
 				<div class="input-group">
-					<input type="text" class="form-control"
+					<input name="productName" type="text" class="form-control"
 						placeholder="Search for products">
 					<div class="input-group-append">
 						<span class="input-group-text bg-transparent text-primary">

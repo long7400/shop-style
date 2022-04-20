@@ -17,8 +17,7 @@ public class MyUser extends User {
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
-	
-	private Long id;
+
 	private String fullName;
 
 	public String getFullName() {
@@ -27,13 +26,5 @@ public class MyUser extends User {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 }

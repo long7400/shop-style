@@ -48,7 +48,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.GET)
-	public ModelAndView resPage() {
+	public ModelAndView regPage() {
 		ModelAndView mav = new ModelAndView("dangky");
 		return mav;
 	}

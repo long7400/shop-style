@@ -48,7 +48,32 @@ public class ProductService implements IProductService{
 		}
 		return models;
 	}
-	
+
+	@Override
+	public List<ProductDTO> findByTitle(Pageable pageable, String title) {
+		List<ProductDTO> models = new ArrayList<>();
+		List<ProductEntity> entities = productRepository.findByTitleContaining(title, pageable).getContent();
+		for (ProductEntity item: entities) {
+			ProductDTO productDTO = productConvert.toDto(item);
+			models.add(productDTO);
+		}
+		return models;
+	}
+
+	@Override
+	public List<ProductDTO> findByColor(Pageable pageable, String colorName) {
+		List<ProductDTO> models = new ArrayList<>();
+		List<ProductEntity> entities = productRepository.findAll(pageable).getContent();
+		for (ProductEntity item: entities) {
+			ProductDTO productDTO = productConvert.toDto(item);
+			if(colorName.contains(productDTO.getColor())) {
+				models.add(productDTO);
+			}
+
+		}
+		return models;
+	}
+
 	@Override
 	public int getTotalItem() {
 		return (int) productRepository.count();
@@ -60,18 +85,6 @@ public class ProductService implements IProductService{
 		return productConvert.toDto(productEntity);
 	}
 	
-//	
-//	public String enCryptPassword(String value) {
-//		int i = 0;
-//		String hashedPassword = "";
-//		while (i < 5) {
-//			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//			hashedPassword = passwordEncoder.encode(value);
-//			i++;	
-//		}
-//		return hashedPassword;
-//	}
-//	
 	@Override
 	@Transactional
 	public ProductDTO save(ProductDTO dto) {
@@ -80,10 +93,11 @@ public class ProductService implements IProductService{
 		if (dto.getId() != null) {
 			ProductEntity oldProduct = productRepository.findOne(dto.getId());
 			oldProduct.setCategory(category);
+			productEntity.setImage("https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437380/product-6_ya5x6y.jpg");
 			productEntity = productConvert.toEntity(oldProduct, dto);
 		} else {
 			productEntity = productConvert.toEntity(dto);
-//			productEntity.setSummary(enCryptPassword(productEntity.getSummary()));
+			productEntity.setImage("https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437380/product-6_ya5x6y.jpg");
 			productEntity.setCategory(category);
 		}
 		return productConvert.toDto(productRepository.save(productEntity));

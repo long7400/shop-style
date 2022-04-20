@@ -49,9 +49,8 @@
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item d-flex flex-column border mb-4"
 					style="padding: 30px;">
-					<p class="text-right">15 Products</p>
 					<a href="" class="cat-img position-relative overflow-hidden mb-3">
-						<img class="img-fluid" src="img/cat-1.jpg" alt="">
+						<img class="img-fluid" src="https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437379/cat-1_xmfjwh.jpg" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0">Men's dresses</h5>
 				</div>
@@ -59,9 +58,8 @@
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item d-flex flex-column border mb-4"
 					style="padding: 30px;">
-					<p class="text-right">15 Products</p>
 					<a href="" class="cat-img position-relative overflow-hidden mb-3">
-						<img class="img-fluid" src="img/cat-2.jpg" alt="">
+						<img class="img-fluid" src="https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437379/cat-2_crwu1v.jpg" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0">Women's dresses</h5>
 				</div>
@@ -69,9 +67,8 @@
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item d-flex flex-column border mb-4"
 					style="padding: 30px;">
-					<p class="text-right">15 Products</p>
 					<a href="" class="cat-img position-relative overflow-hidden mb-3">
-						<img class="img-fluid" src="img/cat-3.jpg" alt="">
+						<img class="img-fluid" src="https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437379/cat-3_nka6hx.jpg" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0">Baby's dresses</h5>
 				</div>
@@ -79,9 +76,8 @@
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item d-flex flex-column border mb-4"
 					style="padding: 30px;">
-					<p class="text-right">15 Products</p>
 					<a href="" class="cat-img position-relative overflow-hidden mb-3">
-						<img class="img-fluid" src="img/cat-4.jpg" alt="">
+						<img class="img-fluid" src="https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437379/cat-4_uka2tz.jpg" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0">Accerssories</h5>
 				</div>
@@ -89,9 +85,8 @@
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item d-flex flex-column border mb-4"
 					style="padding: 30px;">
-					<p class="text-right">15 Products</p>
 					<a href="" class="cat-img position-relative overflow-hidden mb-3">
-						<img class="img-fluid" src="img/cat-5.jpg" alt="">
+						<img class="img-fluid" src="https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437379/cat-5_evcsqc.jpg" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0">Bags</h5>
 				</div>
@@ -99,9 +94,8 @@
 			<div class="col-lg-4 col-md-6 pb-1">
 				<div class="cat-item d-flex flex-column border mb-4"
 					style="padding: 30px;">
-					<p class="text-right">15 Products</p>
 					<a href="" class="cat-img position-relative overflow-hidden mb-3">
-						<img class="img-fluid" src="img/cat-6.jpg" alt="">
+						<img class="img-fluid" src="https://res.cloudinary.com/shopstyle-vn/image/upload/v1650437379/cat-6_jpzaex.jpg" alt="">
 					</a>
 					<h5 class="font-weight-semi-bold m-0">Shoes</h5>
 				</div>

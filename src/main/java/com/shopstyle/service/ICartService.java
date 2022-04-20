@@ -1,5 +1,15 @@
 package com.shopstyle.service;
 
-public interface ICartService {
+import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
+import com.shopstyle.dto.CartDTO;
+
+public interface ICartService {
+	List<CartDTO> findAll(Pageable pageable);
+	
+	int getTotalItem();
 }
+
+

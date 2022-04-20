@@ -16,12 +16,11 @@
 	<decorator name="login" page="login.jsp">
 		<pattern>/dang-nhap</pattern>
 	</decorator>
-
-
-	<decorator name="dangky" page="dangky.jsp">
+	
+	<decorator name="dangky" page="login.jsp">
 		<pattern>/dang-ky</pattern>
 	</decorator>
-	
+
 </decorators>
 
 

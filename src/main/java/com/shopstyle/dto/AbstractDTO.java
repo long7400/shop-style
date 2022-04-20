@@ -1,13 +1,13 @@
 package com.shopstyle.dto;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AbstractDTO<T> {
 	
 	private Long id;
-	private Timestamp createdDate;
+	private Date createdDate;
 	private String createdBy;
 	private long[] ids;
 	private List<T> listResult = new ArrayList<>();
@@ -27,11 +27,11 @@ public class AbstractDTO<T> {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Timestamp getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
+	public void setCreatedDate(Date date) {
+		this.createdDate = date;
 	}
 
 	public String getCreatedBy() {

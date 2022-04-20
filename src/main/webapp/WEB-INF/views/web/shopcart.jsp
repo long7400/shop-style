@@ -54,9 +54,9 @@
 								<c:forEach var="cartItemDTO" items="${carts.cartItemDTOS}"
 									varStatus="loop">
 									<tr>
-										<td><form:label
-												path="cartItemDTOS[${loop.index}].product_id">${cartItemDTO.product_id}</form:label>
-										</td>
+										<td><form:input
+												path="cartItemDTOS[${loop.index}].product_id"
+												value="${cartItemDTO.product_id}" readonly="true" /></td>
 										<td class="align-middle">${cartItemDTO.product_name}</td>
 
 										<td class="align-middle">
@@ -84,31 +84,23 @@
 							</tbody>
 						</table>
 					</c:if>
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label>Address</label>
+								<form:input type="text" path="address" class="form-control" />
+							</div>
 
-					<div class="mb-4" style="padding-top: 10px">
-						<div class="card-header bg-secondary border-0">
-							<h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+
 						</div>
-						<div class="row">
-
-							<div class="col-md-6 form-group">
-								<label>Name</label> <input class="form-control" type="text"
-									placeholder="NguyenVanA">
-							</div>
-
-							<div class="col-md-6 form-group">
-								<label>Address</label> <input class="form-control" type="text"
-									placeholder="123 Street">
-							</div>
-
-							<div class="col-md-6 form-group">
-								<label>Phone Number</label> <input class="form-control"
-									type="text" placeholder="123 Street">
+						<div class="col-6">
+							<div class="form-group">
+								<label>Phone</label>
+								<form:input type="text" path="phone" class="form-control" />
 							</div>
 
 						</div>
 					</div>
-
 				</div>
 				<div class="col-lg-4">
 					<div class="card border-secondary mb-5">
@@ -137,7 +129,6 @@
 				</div>
 			</div>
 		</div>
-
 	</form:form>
 	<!-- Cart End -->
 	<script>
@@ -161,7 +152,12 @@
             $('#cartCouter22').text(function(i, oldText) {
                 return data + ' VNĐ';
             });
+            // $("#cartCouter").text(data);
+            // alert(data);
+
+            // location.reload();
         })
+        // console.info(obj.value);
     }
 </script>
 </body>

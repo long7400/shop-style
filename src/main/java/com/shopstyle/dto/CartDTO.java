@@ -4,7 +4,7 @@ public class CartDTO extends AbstractDTO<CartDTO>{
 	private String address;
 	private String phone;
 	private String status;
-	private String total;
+	private Float total;
 	private String user_id;
 	
 	public String getAddress() {
@@ -25,11 +25,11 @@ public class CartDTO extends AbstractDTO<CartDTO>{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getTotal() {
+	public Float getTotal() {
 		return total;
 	}
-	public void setTotal(String total) {
-		this.total = total;
+	public void setTotal(Float float1) {
+		this.total = float1;
 	}
 	public String getUser_id() {
 		return user_id;

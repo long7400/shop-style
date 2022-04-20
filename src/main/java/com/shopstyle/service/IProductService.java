@@ -8,7 +8,10 @@ public interface IProductService {
 	List<ProductDTO> findAll(Pageable pageable);
 	
 	List<ProductDTO> findAll();
-	
+
+	List<ProductDTO> findByTitle(Pageable pageable, String title);
+	List<ProductDTO> findByColor(Pageable pageable, String title);
+
 	int getTotalItem();
 	ProductDTO findById(long id);
 	ProductDTO save(ProductDTO dto);

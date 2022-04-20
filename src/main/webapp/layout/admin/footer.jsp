@@ -3,8 +3,8 @@
 <%@ include file="/layout/taglib.jsp"%>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 	
 <script src="<c:url value='/common/admin/js/scripts.js'/>"></script>
 <script src="<c:url value='/common/admin/assets/demo/chart-area-demo.js'/>"></script>

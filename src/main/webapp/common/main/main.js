@@ -8,6 +8,7 @@ function addToCart(id) {
 }
 
 
+
 function deleteCart(id){
 	if(confirm("Bạn có muốn xóa không ?") == true){
 		fetch(`http://localhost:8080/shop-style/home-page/api/cart/${id}`,{

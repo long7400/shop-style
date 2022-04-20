@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/home-page/shop-page", method = RequestMethod.GET)
 	public ModelAndView shopPage(@RequestParam("page") int page, 
-			@RequestParam("limit") int limit) {
+			@RequestParam("limit") int limit,@RequestParam( name = "productName", defaultValue = "") String productName) {
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setPage(page);
 		productDTO.setLimit(limit);
@@ -38,6 +39,41 @@ public class ProductController {
 		productDTO.setTotalItem(iProductService.getTotalItem());
 		productDTO.setTotalPage((int) Math.ceil((double) productDTO.getTotalItem() / productDTO.getLimit()));
 		mav.addObject("model", productDTO);
+		mav.addObject("product", productDTO);
+		return mav;
+	}
+
+	@RequestMapping(value = "/home-page/shop-page2", method = RequestMethod.GET)
+	public ModelAndView shopPage2(@RequestParam(name = "page", defaultValue = "1" ) int page,
+								 @RequestParam(name = "limit", defaultValue = "2" ) int limit,
+								  @RequestParam( name = "productName", defaultValue = "") String productName) {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setPage(page);
+		productDTO.setLimit(limit);
+		ModelAndView mav = new ModelAndView("web/shop");
+		Pageable pageable = new PageRequest(page - 1, limit);
+		productDTO.setListResult(iProductService.findByTitle(pageable, productName));
+		productDTO.setTotalItem(iProductService.getTotalItem());
+		productDTO.setTotalPage((int) Math.ceil((double) productDTO.getTotalItem() / productDTO.getLimit()));
+		mav.addObject("model", productDTO);
+		mav.addObject("product", productDTO);
+		return mav;
+	}
+
+	@RequestMapping(value = "/home-page/shop-page3", method = RequestMethod.POST)
+	public ModelAndView shopPage3(@RequestParam(name = "page", defaultValue = "1" ) int page,
+								  @RequestParam(name = "limit", defaultValue = "2" ) int limit,
+								  @ModelAttribute("home") ProductDTO request) {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setPage(page);
+		productDTO.setLimit(limit);
+		ModelAndView mav = new ModelAndView("web/shop");
+		Pageable pageable = new PageRequest(page - 1, limit);
+		productDTO.setListResult(iProductService.findByColor(pageable, request.getColor()));
+		productDTO.setTotalItem(iProductService.getTotalItem());
+		productDTO.setTotalPage((int) Math.ceil((double) productDTO.getTotalItem() / productDTO.getLimit()));
+		mav.addObject("model", productDTO);
+		mav.addObject("product", productDTO);
 		return mav;
 	}
 	

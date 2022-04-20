@@ -5,30 +5,31 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.shopstyle.dto.CartItemDTO;
 import com.shopstyle.dto.CartRequest;
+import com.shopstyle.entity.CartEntity;
 import com.shopstyle.entity.CartItemEntity;
 import com.shopstyle.entity.ProductEntity;
 import com.shopstyle.repository.CartItemRepository;
+import com.shopstyle.repository.CartRepository;
 import com.shopstyle.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.shopstyle.dto.CartItemDTO;
 
 @Controller
 public class CartController {
-	
 	@Autowired
 	private CartItemRepository cartItemRepository;
 
 	@Autowired
+	private CartRepository cartRepository;
+
+	@Autowired
 	private ProductRepository productRepository;
 
-	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/home-page/cart", method = RequestMethod.GET)
 	public ModelAndView cartPage( HttpSession httpSession) {
@@ -38,22 +39,35 @@ public class CartController {
 		if(cart != null) {
 			cartRequest.setCartItemDTOS(new ArrayList<CartItemDTO>(cart.values()));
 		}else {
+
 		}
 		mav.addObject("carts", cartRequest);
 		return mav;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/updateCart", method = RequestMethod.POST)
 	public ModelAndView updateCart(HttpSession httpSession, @ModelAttribute("carts") CartRequest cartRequest) {
 		ModelAndView mav = new ModelAndView("web/shopcart");
 		Map<Long, CartItemDTO> cart = (Map<Long, CartItemDTO>) httpSession.getAttribute("cart");
+		float amount = 0;
+		for (CartItemDTO cartItemDTO: cartRequest.getCartItemDTOS()) {
+			ProductEntity productEntity = productRepository.getOne(cartItemDTO.getProduct_id());
+			amount += cartItemDTO.getQuantity() * productEntity.getPrice();
+		}
+		CartEntity cartEntity = new CartEntity();
+		cartEntity.setTotal(amount);
+		cartEntity.setAddress(cartRequest.getAddress());
+		cartEntity.setPhone(cartRequest.getPhone());
+		cartEntity.setStatus("DAT_HANG");
+		cartRepository.save(cartEntity);
 		for (CartItemDTO cartItemDTO: cartRequest.getCartItemDTOS()) {
 			CartItemEntity cartItemEntity = new CartItemEntity();
 			ProductEntity productEntity = productRepository.getOne(cartItemDTO.getProduct_id());
 			cartItemEntity.setProduct(productEntity);
 			cartItemEntity.setQuantity(cartItemDTO.getQuantity());
 			cartItemEntity.setPrice(cartItemDTO.getQuantity() * productEntity.getPrice());
+			cartItemEntity.setCart(cartEntity);
 			cartItemRepository.save(cartItemEntity);
 
 			CartItemDTO cartItemDTO1 = cart.get(cartItemDTO.getProduct_id());
@@ -64,11 +78,10 @@ public class CartController {
 		if(cart != null) {
 			cartRequest2.setCartItemDTOS(new ArrayList<CartItemDTO>(cart.values()));
 		}else {
-			System.err.println("NULL");
+
 		}
 		mav.addObject("carts", cartRequest2);
 
 		return mav;
 	}
-
 }

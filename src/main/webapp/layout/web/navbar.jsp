@@ -37,18 +37,9 @@
 				<div class="collapse navbar-collapse justify-content-between"
 					id="navbarCollapse">
 					<div class="navbar-nav mr-auto py-0">
-						<a href="index.html" class="nav-item nav-link active">Home</a> 
-						<a href="<c:url value='/home-page/shop-page?page=1&limit=2'/>" class="nav-item nav-link">Shop</a> <a
-							href="detail.html" class="nav-item nav-link">Shop Detail</a>
-						<div class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle"
-								data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu rounded-0 m-0">
-								<a href="cart.html" class="dropdown-item">Shopping Cart</a> <a
-									href="checkout.html" class="dropdown-item">Checkout</a>
-							</div>
-						</div>
-						<a href="contact.html" class="nav-item nav-link">Contact</a>
+						<a href="<c:url value='/home-page'/>" class="nav-item nav-link active">Home</a> 
+						<a href="<c:url value='/home-page/shop-page?page=1&limit=2'/>" class="nav-item nav-link">Shop</a>
+						<a href="<c:url value='/home-page/contact-page'/>" class="nav-item nav-link">Contact</a>
 					</div>
 					<security:authorize access = "isAnonymous()">
 						<div class="navbar-nav ml-auto py-0">
@@ -68,30 +59,13 @@
 			<div id="header-carousel" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active" style="height: 410px;">
-						<img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
+						<img class="img-fluid" src="https://i.pinimg.com/600x315/83/10/27/8310272150b3f68855075c08319b5fde.jpg" alt="Image">
 						<div
 							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-							<div class="p-3" style="max-width: 700px;">
-								<h4 class="text-light text-uppercase font-weight-medium mb-3">10%
-									Off Your First Order</h4>
-								<h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable
-									Dress</h3>
-								<a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-							</div>
 						</div>
 					</div>
 					<div class="carousel-item" style="height: 410px;">
-						<img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
-						<div
-							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-							<div class="p-3" style="max-width: 700px;">
-								<h4 class="text-light text-uppercase font-weight-medium mb-3">10%
-									Off Your First Order</h4>
-								<h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable
-									Price</h3>
-								<a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-							</div>
-						</div>
+						<img class="img-fluid" src="https://ginzburgpressfilms.com/wp-content/uploads/2017/07/T-shirt-Mock-up-vintage-retro-background-navy-1500x500.png" alt="Image">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#header-carousel"
